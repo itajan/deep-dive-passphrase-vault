@@ -1,11 +1,13 @@
 package edu.cnm.deepdive.passphrase;
 
-import edu.cnm.deepdive.passphrase.util.Constants;
+
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import edu.cnm.deepdive.passphrase.util.Constants;
 
 public class WordList {
 

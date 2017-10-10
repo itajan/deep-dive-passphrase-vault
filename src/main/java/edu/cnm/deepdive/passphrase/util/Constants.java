@@ -20,6 +20,11 @@ public class Constants {
     // Definitions of the Specifications string variables
     public static final String SPECIFY_LENGTH = "specifyLength";
     public static final String SPECIFY_DELIMITER = "specifyDelimiter";
+    public static final int MINIMUM_PASSWORD_LENGTH = 5;
+    public static final int MAXIMUM_PASSWORD_LENGTH = 20;
+    public static final int MINIMUM_PASSPHRASE_LENGTH = 7;
+    public static final int MAXIMUM_PASSPHRASE_LENGTH = 12;
+    public static final char[] DELIMITER_SELECTION = {'_', '-', '*',};
 
     // Definition of the mode switch string
     public static final String MODE_SWITCH= "modeSwitch";
@@ -30,10 +35,15 @@ public class Constants {
     // Definitions of the Error Messages
     public static final String MODE_SELECT_ERROR = "modeSelectError";
     public static final String LENGTH_ERROR = "lengthError";
+    public static final String ARGUMENT_ERROR = "argumentError";
+    public static final String DELIMITER_ERROR = "delimiterErrorMessage";
 
     // Definitions of the Warning Messages
     public static final String LENGTH_WARNING = "lengthWarning";
     public static final String MODE_WARNING = "modeWarning";
+    public static final String UNRECOGNIZED_OPTION = "unrecognizedOption";
+    public static final String MISSING_OPTION = "missingOption";
+
 
     // Definitions of the arguments
     public static final String EXCLUDES_SYMBOLS_ARGS = "excludesSymbolsArgs";
@@ -49,7 +59,7 @@ public class Constants {
     public static final String EXCLUDES_ORDER_OPTION = "exclude-order";
     public static final String EXCLUDES_SYMBOLS_OPTION = "exclude-symbols";
     public static final String LENGTH_OPTION = "length";
-    public static final String DELIMITER_OPTION = "delimiter";
     public static final String HELP_OPTION = "help";
     public static final String PASSWORD_MODE_OPTION = "password-mode";
+    public static final String DELIMITER_OPTION = "delimiter";
 }

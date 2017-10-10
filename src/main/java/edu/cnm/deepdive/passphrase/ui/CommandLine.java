@@ -4,14 +4,15 @@ import edu.cnm.deepdive.passphrase.util.Constants;
 import edu.cnm.deepdive.passphrase.Options;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.cli.ParseException;
 
 //TODO - Write main method as a test rig for Options class.
 
 public class CommandLine {
 
-  public static void main(String[] args) {
-    Options Options = new Options();
-    Map<String,Object> map = new HashMap<>();
+  public static void main(String[] args) throws ParseException {
+    Options options = new Options(args);
+    Map<String,Object> map = options.getMap();
 
     for(Map.Entry<String, Object> entry: map.entrySet()){
       System.out.printf("%s = %s%n", entry.getKey(), entry.getValue());

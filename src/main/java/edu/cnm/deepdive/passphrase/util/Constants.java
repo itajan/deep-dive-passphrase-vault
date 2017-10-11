@@ -62,4 +62,27 @@ public class Constants {
     public static final String HELP_OPTION = "help";
     public static final String PASSWORD_MODE_OPTION = "password-mode";
     public static final String DELIMITER_OPTION = "delimiter";
+
+    // Default values
+    public static final boolean DEFAULT_REPEAT_ALLOWED = true;
+    public static final char DEFAULT_DELIMITER = ' ';
+    public static final int DEFAULT_PASSPHRASE_LENGTH = 6;
+    public static final int DEFAULT_PASSWORD_LENGTH = 12;
+    public static final boolean DEFAULT_ORDER_CONFIGURATION = false;
+    public static final boolean DEFAULT_EXCLUDES_UPPERCASE = false;
+    public static final boolean DEFAULT_EXCLUDES_LOWERCASE = false;
+    public static final boolean DEFAULT_EXCLUDES_DIGITS = false;
+    public static final boolean DEFAULT_EXCLUDES_SYMBOLS = false;
+    public static final boolean DEFAULT_EXCLUDES_AMBIGUOUS = false;
+
+
+    // Character list
+    public static final String UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String LOWERCASE = UPPERCASE.toLowerCase();
+    public static final String DIGITS = "0123456789";
+    public static final String SYMBOLS = "*!<>?/@#$%^&()-+_,.\\|{}[]~`:;\'\"";
+    public static final String AMBIGUOUS = "l, 1, o, 0";
+
+    //TODO add public static final String SYMBOLS
 }
+

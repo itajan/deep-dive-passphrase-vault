@@ -1,6 +1,6 @@
 package edu.cnm.deepdive.passphrase.util;
 
-// e.g. keys for accessing resource bundle properties,resources
+// keys for accessing resource bundle properties and resourcess.
 
 public class Constants {
     // Resource bundles names

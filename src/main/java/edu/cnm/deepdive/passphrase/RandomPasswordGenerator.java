@@ -2,17 +2,19 @@ package edu.cnm.deepdive.passphrase;
 
 import edu.cnm.deepdive.passphrase.util.Constants;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// TODO Add logic for excluding some ( not all symbols).
 public class RandomPasswordGenerator extends RandomArtifactGenerator {
 
   private boolean orderExcluded = Constants.DEFAULT_ORDER_CONFIGURATION;
-  private boolean excludesUppercase = Constants.DEFAULT_EXCLUDES_UPPERCASE;
-  private boolean excludesLowercase = Constants.DEFAULT_EXCLUDES_LOWERCASE;
-  private boolean excludesDigits = Constants.DEFAULT_EXCLUDES_DIGITS;
-  private boolean excludesSymbols = Constants.DEFAULT_EXCLUDES_SYMBOLS;
-  private boolean excludesAmbiguous = Constants.DEFAULT_EXCLUDES_AMBIGUOUS;
+  private boolean uppercaseExcluded = Constants.DEFAULT_EXCLUDES_UPPERCASE;
+  private boolean lowercaseExcluded = Constants.DEFAULT_EXCLUDES_LOWERCASE;
+  private boolean digitsExcluded = Constants.DEFAULT_EXCLUDES_DIGITS;
+  private boolean symbolsExcluded = Constants.DEFAULT_EXCLUDES_SYMBOLS;
+  private boolean ambiguousExcluded = Constants.DEFAULT_EXCLUDES_AMBIGUOUS;
 
   //TODO - add StringBuilder.setCharAt
   //TODO - make setters for all private constants
@@ -24,14 +26,55 @@ public class RandomPasswordGenerator extends RandomArtifactGenerator {
   }
 
   public String generate() {
-    List<String> characters = new ArrayList<>();
+    StringBuilder pool = new StringBuilder();
+    String ambiguousRegex;
+    if (!ambiguousExcluded) {
+      ambiguousRegex = "[" + new String(Constants.AMBIGUOUS) + "]";
+    } else {
+      ambiguousRegex = "(?!a)a";
+    }
+    if (!uppercaseExcluded) {
+      pool.append(Constants.UPPERCASE.replaceAll(ambiguousRegex, ""));
+    }
+    if (!lowercaseExcluded) {
+      pool.append(Constants.LOWERCASE.replaceAll(ambiguousRegex, ""));
+    }
+    if (!digitsExcluded) {
+      pool.append(Constants.DIGITS.replaceAll(ambiguousRegex, ""));
+    }
+    if (!symbolsExcluded) {
+      pool.append(Constants.SYMBOLS.replaceAll(ambiguousRegex, ""));
+    }
+    String source = pool.toString();
+    List<Character> characters = new LinkedList<>();
     while (characters.size() < getLength()) {
-      String character = WordList.getRandom(getRng());
-      if (isRepeatedAllowed() || !characters.contains(character)) {
-        characters.add(character);
+      char c = source.charAt(getRng().nextInt(source.length()));
+      if (isRepeatedAllowed() || !characters.contains(c)) {
+        if (!orderExcluded){
+          characters.add(c);
+        } else {
+          boolean searchAscending = true;
+          boolean searchDescending = true;
+          for (int i = 1; i <= Constants.MAX_ORDER_LENGTH; i++) {
+            if (searchAscending
+                && characters.get(characters.size() - i) != (char) (c - 1)) {
+              searchDescending = false;
+            } else if (searchDescending
+              && characters.get(characters.size() - i) != (char) (c + 1)) {
+              searchAscending = false;
+            } else {
+              characters.add(c);
+              break;
+            }
+          }
+        }
       }
     }
-    return characters.stream().collect(Collectors.joining(Character.toString(delimiter)));
+    StringBuilder password = new StringBuilder();
+    for (char c : characters) {
+      password.append(c);
+    }
+    return password.toString();
   }
 
   public boolean isOrderExcluded() {
@@ -42,44 +85,44 @@ public class RandomPasswordGenerator extends RandomArtifactGenerator {
     this.orderExcluded = orderExcluded;
   }
 
-  public boolean isExcludesUppercase() {
-    return excludesUppercase;
+  public boolean isUppercaseExcluded() {
+    return uppercaseExcluded;
   }
 
-  public void setExcludesUppercase(boolean excludesUppercase) {
-    this.excludesUppercase = excludesUppercase;
+  public void setUppercaseExcluded(boolean uppercaseExcluded) {
+    this.uppercaseExcluded = uppercaseExcluded;
   }
 
-  public boolean isExcludesLowercase() {
-    return excludesLowercase;
+  public boolean isLowercaseExcluded() {
+    return lowercaseExcluded;
   }
 
-  public void setExcludesLowercase(boolean excludesLowercase) {
-    this.excludesLowercase = excludesLowercase;
+  public void setLowercaseExcluded(boolean lowercaseExcluded) {
+    this.lowercaseExcluded = lowercaseExcluded;
   }
 
-  public boolean isExcludesDigits() {
-    return excludesDigits;
+  public boolean isDigitsExcluded() {
+    return digitsExcluded;
   }
 
-  public void setExcludesDigits(boolean excludesDigits) {
-    this.excludesDigits = excludesDigits;
+  public void setDigitsExcluded(boolean digitsExcluded) {
+    this.digitsExcluded = digitsExcluded;
   }
 
-  public boolean isExcludesSymbols() {
-    return excludesSymbols;
+  public boolean isSymbolsExcluded() {
+    return symbolsExcluded;
   }
 
-  public void setExcludesSymbols(boolean excludesSymbols) {
-    this.excludesSymbols = excludesSymbols;
+  public void setSymbolsExcluded(boolean symbolsExcluded) {
+    this.symbolsExcluded = symbolsExcluded;
   }
 
-  public boolean isExcludesAmbiguous() {
-    return excludesAmbiguous;
+  public boolean isAmbiguousExcluded() {
+    return ambiguousExcluded;
   }
 
-  public void setExcludesAmbiguous(boolean excludesAmbiguous) {
-    this.excludesAmbiguous = excludesAmbiguous;
+  public void setAmbiguousExcluded(boolean ambiguousExcluded) {
+    this.ambiguousExcluded = ambiguousExcluded;
   }
 
 }

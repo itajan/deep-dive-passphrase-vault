@@ -4,18 +4,18 @@ package edu.cnm.deepdive.passphrase.util;
 
 public class Constants {
     // Resource bundles names
-    public static final String USAGE_BUNDLE = "usage-string";
+    public static final String USAGE_BUNDLE = "usage-strings";
 	  public static final String WORDS_BUNDLE = "diceware-words";
 
 
     // Definitions of the Exclusion string variables
-    public static final String EXCLUDES_REPEAT = "excludesRepeat";
-    public static final String EXCLUDES_UPPERCASE = "excludesUppercase";
-    public static final String EXCLUDES_LOWERCASE = "excludesLowercase";
-    public static final String EXCLUDES_DIGITS = "excludesDigits";
-    public static final String EXCLUDES_SYMBOLS = "excludesSymbols";
-    public static final String EXCLUDES_AMBIGUOUS = "excludesAmbiguous";
-    public static final String EXCLUDES_ORDER = "excludesOrder";
+    public static final String EXCLUDES_REPEAT = "repeatExcluded";
+    public static final String EXCLUDES_UPPERCASE = "uppercaseExcluded";
+    public static final String EXCLUDES_LOWERCASE = "lowercaseExcluded";
+    public static final String EXCLUDES_DIGITS = "digitsExcluded";
+    public static final String EXCLUDES_SYMBOLS = "symbolsExcluded";
+    public static final String EXCLUDES_AMBIGUOUS = "ambiguousExcluded";
+    public static final String EXCLUDES_ORDER = "orderExcluded";
 
     // Definitions of the Specifications string variables
     public static final String SPECIFY_LENGTH = "specifyLength";
@@ -59,11 +59,11 @@ public class Constants {
     public static final String EXCLUDES_ORDER_OPTION = "exclude-order";
     public static final String EXCLUDES_SYMBOLS_OPTION = "exclude-symbols";
     public static final String LENGTH_OPTION = "length";
+    public static final String DELIMITER_OPTION = "delimiter";
     public static final String HELP_OPTION = "help";
     public static final String PASSWORD_MODE_OPTION = "password-mode";
-    public static final String DELIMITER_OPTION = "delimiter";
 
-    // Default values
+    // Default values // TODO needs a javadoc for all of these
     public static final boolean DEFAULT_REPEAT_ALLOWED = true;
     public static final char DEFAULT_DELIMITER = ' ';
     public static final int DEFAULT_PASSPHRASE_LENGTH = 6;
@@ -81,7 +81,8 @@ public class Constants {
     public static final String LOWERCASE = UPPERCASE.toLowerCase();
     public static final String DIGITS = "0123456789";
     public static final String SYMBOLS = "*!<>?/@#$%^&()-+_,.\\|{}[]~`:;\'\"";
-    public static final String AMBIGUOUS = "l, 1, o, 0";
+    public static final char[] AMBIGUOUS = {'l', '1', 'O', '0'};
+    public static final int MAX_ORDER_LENGTH = 2;
 
     //TODO add public static final String SYMBOLS
 }

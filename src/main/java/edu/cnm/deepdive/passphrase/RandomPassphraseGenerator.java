@@ -8,15 +8,14 @@ import java.util.stream.Collectors;
 public class RandomPassphraseGenerator extends RandomArtifactGenerator {
 
   private char delimiter = Constants.DEFAULT_DELIMITER;
+
   public RandomPassphraseGenerator () {
     setLength(Constants.DEFAULT_PASSPHRASE_LENGTH);
   }
-  // uses an array to store items, which we then check for repeated words.
 
   // String builder
   public String generate() {
     List<String> words = new ArrayList<>();
-
 
     while (words.size() < getLength()) {
       String word = WordList.getRandom(getRng());
@@ -30,6 +29,11 @@ public class RandomPassphraseGenerator extends RandomArtifactGenerator {
   public char getDelimiter() {
     return delimiter;
   }
+
+  /**
+   *
+   * @param delimiter
+   */
 
   public void setDelimiter(char delimiter) {
     this.delimiter = delimiter;
